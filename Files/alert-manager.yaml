@@ -1,0 +1,31 @@
+# Global configurations for the alertmanager
+global:
+  resolve_timeout: 1m
+  slack_api_url: 'https://hooks.slack.com/services/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'
+  pagerduty_url: 'https://events.pagerduty.com/v2/enqueue'
+# Routing configuration
+route:
+  receiver: lab-alert-manager
+  repeat_interval: 1m
+
+# Receivers configuration
+
+receivers: - name: 'lab-alert-manager'
+
+  slack_configs:
+    - send_resolved: true
+      username: 'Alertmanager'
+      channel: '#alert'
+      api_url: 'https://hooks.slack.com/services/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'
+  pagerduty_configs:
+    - service_key: a9369e00e6804002d1449c159ee8e187
+      send_resolved: true
+
+  email_configs:
+    - to: 'hamzzamardessi@gmail.com'
+      from: 'hamzamerdassi41@gmail.com'
+      smarthost: 'smtp.gmail.com:587'
+      auth_username: 'hamzzamardessi@gmail.com'
+      auth_identity: 'hamzamerdassi41@gmail.com'
+      auth_password: 'dtao jezd cdvz trwy'
+      send_resolved: true
